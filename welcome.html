@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Welcome</title>
+  <style>
+    body {
+      background: #e0e0e0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      flex-direction: column;
+      text-align: center;
+      margin: 0;
+      user-select: none;
+    }
+
+    h1 {
+      font-size: 7rem;
+      color: #333;
+      text-shadow: 1px 1px 2px #fff, -1px -1px 2px #c5c5c5;
+      margin-bottom: 0.2em;
+      letter-spacing: 4px;
+    }
+
+    p {
+      font-size: 1.2rem;
+      color: #666;
+      margin-bottom: 2em;
+    }
+
+    button {
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 12px;
+      background: #e0e0e0;
+      box-shadow: 8px 8px 16px #bebebe, -8px -8px 16px #ffffff;
+      color: #333;
+      cursor: pointer;
+      transition: 0.2s ease-in-out;
+    }
+
+    button:hover {
+      box-shadow: inset 6px 6px 10px #bebebe, inset -6px -6px 10px #ffffff;
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+  <h1>Epsilon</h1>
+  <p>Number System Convertor made by Utkarsh & Shreja</p>
+  <button onclick="goToCalci()">Welcome</button>
+
+  <script>
+    function goToCalci() {
+      window.location.href = "template.html"; // Redirect to calculator
+    }
+
+    // Optional auto-redirect after delay:
+    // setTimeout(goToCalci, 3000);
+  </script>
+</body>
+</html>

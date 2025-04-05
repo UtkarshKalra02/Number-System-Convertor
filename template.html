@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Epsilon Number Converter</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #0d0d0d;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .converter-container {
+      background-color: #1a1a1a;
+      border: 2px solid #00fff7;
+      border-radius: 16px;
+      padding: 40px;
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+      box-shadow: 0 0 20px #00fff7;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 30px;
+      color: #00fff7;
+      text-shadow: 0 0 5px #00fff7;
+    }
+
+    input, select, button {
+      width: 90%;
+      margin: 10px 0;
+      padding: 12px;
+      font-size: 1rem;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+      background-color: #111;
+      color: #00fff7;
+      box-shadow: 0 0 10px #00fff7;
+      transition: all 0.3s ease-in-out;
+    }
+
+    input:focus, select:focus {
+      box-shadow: 0 0 15px #00fff7;
+    }
+
+    button {
+      background-color: transparent;
+      border: 2px solid #00fff7;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s ease-in-out;
+    }
+
+    button:hover {
+      background-color: #00fff7;
+      color: #111;
+      box-shadow: 0 0 20px #00fff7;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 1.4rem;
+      color: #39ff14;
+      text-shadow: 0 0 5px #39ff14;
+    }
+  </style>
+</head>
+<body>
+  <div class="converter-container">
+    <h1>Epsilon Number System Converter</h1>
+    <input type="text" id="value" placeholder="Enter Number" />
+    <br />
+    <select id="from">
+      <option value="decimal">Decimal</option>
+      <option value="binary">Binary</option>
+      <option value="octal">Octal</option>
+      <option value="hexadecimal">Hexadecimal</option>
+    </select>
+    to
+    <select id="to">
+      <option value="binary">Binary</option>
+      <option value="decimal">Decimal</option>
+      <option value="octal">Octal</option>
+      <option value="hexadecimal">Hexadecimal</option>
+    </select>
+    <br />
+    <button onclick="convert()">Convert</button>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    async function convert() {
+      const value = document.getElementById('value').value;
+      const from = document.getElementById('from').value;
+      const to = document.getElementById('to').value;
+
+      try {
+        const res = await fetch('http://127.0.0.1:5000/convert', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ value, from, to })
+        });
+
+        const data = await res.json();
+        document.getElementById('result').innerText = `Result: ${data.result}`;
+      } catch (error) {
+        document.getElementById('result').innerText = 'Conversion failed.';
+        console.error(error);
+      }
+    }
+  </script>
+</body>
+</html>
